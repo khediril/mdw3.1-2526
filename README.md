@@ -13,3 +13,5 @@
 [Atelier 6](Atelier06.md)
 ## Atelier 7
 [Atelier 7](Atelier07.md)
+## Atelier 8 : Les API Rest
+[Atelier 8](Atelier08.md)
