@@ -1,182 +1,321 @@
-# Atelier Guidé : Premiers Pas avec Symfony 7.3 (3 Heures)
 
-## Introduction : Le Flux de Travail de Symfony
+# **Atelier 02 : De la Route à la Vue Dynamique**
 
-Bienvenue dans cet atelier d'introduction au framework **Symfony 7.3**. L'objectif est de comprendre le cycle de vie d'une requête (le flux **Request $\rightarrow$ Route $\rightarrow$ Controller $\rightarrow$ Template $\rightarrow$ Response**) en créant une application web simple.
+Bienvenue dans cet atelier pratique sur Symfony \! L'objectif est de construire une petite application web simple pour lister des produits. Nous allons mettre en pratique les concepts de **contrôleurs**, de **routes** et nous focaliser sur le moteur de templates **Twig** pour créer des vues dynamiques et bien structurées.
 
-### ⚠️ Prérequis Techniques (À vérifier AVANT de commencer)
+### **Prérequis**
 
-Assurez-vous que les éléments suivants sont installés et configurés :
-
-1.  **PHP** (version $\ge 8.2$).
-2.  **Composer** (gestionnaire de dépendances).
-3.  **Symfony CLI** (fortement recommandé).
-4.  Un éditeur de code (VS Code, PhpStorm, etc.).
+  * PHP 8.1 ou supérieur installé.
+  * Composer installé.
+  * Symfony CLI installé.
+  * Avoir lu et compris les concepts des **Ateliers 2 (Contrôleurs et Routes)** et **3 (Les Vues avec Twig)**.
 
 -----
 
-## Phase 1 : Démarrage et Architecture
+## **Partie 1 : Initialisation et Première Page Produit**
 
-Cette phase permet de mettre en place l'environnement et de découvrir la structure du projet.
+Dans cette première étape, nous allons créer un nouveau projet Symfony, mettre en place un contrôleur dédié à nos produits et afficher une première page statique.
 
-### Q 1.0 : Installation et Lancement
+#### **Tâches à réaliser :**
 
-**Tâche :** Installez un nouveau projet Symfony et lancez le serveur de développement.
+1.  **Créez un nouveau projet Symfony** :
+    Ouvrez votre terminal et exécutez la commande suivante pour créer un nouveau projet nommé `MaBoutique`.
 
-1.  Ouvrez votre terminal et déplacez-vous dans le répertoire de travail souhaité.
-2.  Créez un nouveau projet Symfony avec le *squelette webapp* (qui inclut déjà Twig et les annotations/attributs) :
     ```bash
-    symfony new mon_projet_symfony --webapp
-    cd mon_projet_symfony
+    symfony new MaBoutique --webapp
     ```
-3.  Démarrez le serveur local de développement :
+
+2.  **Créez un Contrôleur pour les Produits** :
+    Utilisez la console Symfony pour générer un nouveau contrôleur.
+
     ```bash
-    symfony server:start
+    php bin/console make:controller ProductController
     ```
-4.  Ouvrez l'URL affichée (généralement `http://127.0.0.1:8000/`) dans votre navigateur.
-    *Vous devriez voir la page de bienvenue de Symfony et la **Web Debug Toolbar**.*
 
-### Q 1.1 : Structure du Projet
+    Cela va créer deux fichiers : `src/Controller/ProductController.php` et `templates/product/index.html.twig`.
 
-**Tâche :** Répondez aux questions suivantes dans vos notes :
-
-1.  Quel fichier est le **point d'entrée** unique de toutes les requêtes HTTP dans une application Symfony ? (Indice : regardez dans le dossier `public/`).
-2.  Dans quel dossier allons-nous écrire la majorité de notre code PHP (les classes et les contrôleurs) ?
-3.  À quoi sert le dossier `templates/` ?
-
------
-
-## Phase 2 : Le Contrôleur et le Routage
-
-Nous allons créer notre propre page d'accueil pour remplacer celle par défaut.
-
-### Q 2.0 : Création du Contrôleur
-
-**Tâche :** Générez le squelette d'un contrôleur.
-
-1.  Arrêtez le serveur (`Ctrl+C`) et utilisez l'outil **Maker Bundle** pour créer une nouvelle classe de contrôleur nommée `HomeController` :
-    ```bash
-    php bin/console make:controller HomeController
-    ```
-2.  **Ouvrez le fichier** créé dans `src/Controller/HomeController.php`. Observez la méthode `index()` et l'attribut PHP **`#[Route]`** associé.
-
-### Q 2.1 : Route Statique et Réponse HTTP
-
-**Tâche :** Modifiez le Contrôleur pour qu'il réponde à l'URL racine (`/`) avec un simple message.
-
-1.  Assurez-vous que l'attribut **`#[Route]`** pour la méthode `index()` est bien configuré pour l'URL racine :
-    ```php
-    #[Route('/', name: 'app_home')]
-    ```
-2.  Modifiez la méthode `index()` pour qu'elle **retourne directement un objet `Response`** contenant une simple chaîne de texte :
-    ```php
-    // Dans src/Controller/HomeController.php
-    use Symfony\Component\HttpFoundation\Response;
-
-    // ... dans la méthode index()
-    return new Response('<h1>Bienvenue sur mon Symfony 7.3 !</h1>');
-    ```
-3.  Relancez le serveur et vérifiez le résultat dans votre navigateur.
-
-### Q 2.2 : Route Dynamique avec Paramètres
-
-**Tâche :** Créez une nouvelle page qui prend un nom en paramètre dans l'URL.
-
-1.  Dans la classe `HomeController`, ajoutez une nouvelle méthode `greet()` qui accepte un argument de type `string` :
+3.  **Configurez votre première route** :
+    Ouvrez le fichier `src/Controller/ProductController.php`. Modifiez la route générée au-dessus de la méthode `index()` pour qu'elle corresponde au chemin `/products` et nommez-la `app_products_index`.
 
     ```php
-    // Dans src/Controller/HomeController.php
-    #[Route('/hello/{name}', name: 'app_greet')]
-    public function greet(string $name = 'Monde'): Response
+    // src/Controller/ProductController.php
+
+    #[Route('/products', name: 'app_products_index')]
+    public function index(): Response
     {
-        return new Response('Bonjour, ' . $name . ' !');
+        return $this->render('product/index.html.twig', [
+            'controller_name' => 'ProductController',
+        ]);
     }
     ```
 
-    *Le `= 'Monde'` permet d'avoir une valeur par défaut.*
+4.  **Modifiez la vue initiale** :
+    Ouvrez `templates/product/index.html.twig`. Modifiez le contenu pour qu'il soit plus approprié. [cite\_start]N'oubliez pas que cette vue hérite de `base.html.twig`[cite: 15].
 
-2.  Testez les URL suivantes :
-
-      * `http://127.0.0.1:8000/hello/Toto`
-      * `http://127.0.0.1:8000/hello/Alice`
-
------
-
-## Phase 3 : La Vue avec Twig et les Assets
-
-Nous allons utiliser **Twig** pour un affichage propre et gérer les ressources statiques.
-
-### Q 3.0 : Rendre un Template
-
-**Tâche :** Modifiez la méthode `greet()` pour qu'elle utilise un template Twig pour le rendu.
-
-1.  Dans la méthode `greet()`, remplacez l'objet `Response` par un appel à la méthode **`$this->render()`**.
-2.  La méthode `render()` prend le chemin du template (`hello/greet.html.twig`) et un **tableau de variables** à transmettre à la vue :
-    ```php
-    // Dans src/Controller/HomeController.php, méthode greet()
-    return $this->render('home/greet.html.twig', [
-        'user_name' => $name, // On passe la variable 'name' sous le nom 'user_name'
-    ]);
-    ```
-
-### Q 3.1 : Création du Template Twig
-
-**Tâche :** Créez le fichier de la vue et utilisez la variable transmise.
-
-1.  Créez le fichier **`templates/home/greet.html.twig`**.
-2.  Structurez le template en utilisant l'**héritage de Twig** (étendez `base.html.twig`) et affichez la variable `user_name` :
     ```twig
-    {# templates/home/greet.html.twig #}
+    {# templates/product/index.html.twig #}
+
     {% extends 'base.html.twig' %}
 
-    {% block title %}Bonjour {{ user_name }}{% endblock %}
+    {% block title %}Liste des Produits{% endblock %}
 
     {% block body %}
-        <h1>Salut {{ user_name }} !</h1>
-
-        <p>Ceci est la première page générée avec Twig.</p>
-        
-        {# Q 3.2 : Lien Inter-Pages #}
-        <p>
-            <a href="{{ path('app_home') }}">Retour à la page d'accueil (Route: app_home)</a>
-        </p>
-
+    <div class="container">
+        <h1>Voici la liste de tous nos produits</h1>
+        <p>Cette page sera bientôt dynamique !</p>
+    </div>
     {% endblock %}
     ```
-3.  Vérifiez que la page fonctionne en accédant à l'URL dynamique.
 
-### Q 3.3 : Intégrer une Image (Gestion des Assets)
+5.  **Testez votre page** :
+    Démarrez le serveur de développement de Symfony.
 
-**Tâche :** Ajoutez une image (asset statique) à votre template en utilisant la bonne méthode Symfony.
-
-1.  Créez un dossier pour les images dans votre répertoire public :
     ```bash
-    mkdir public/images
+    symfony serve
     ```
-2.  Ajoutez une image de votre choix (ex: un logo ou une image de test) dans ce dossier et nommez-la `logo.png` (ou un autre nom).
-3.  Dans votre template `greet.html.twig`, utilisez la fonction Twig **`asset()`** pour générer le chemin correct vers cette image :
+
+    Ouvrez votre navigateur et allez sur `http://1227.0.0.1:8000/products`.
+
+6.  **Intégration simple de Bootstrap** :
+    Le projet créé avec `--webapp` intègre normalement les assets nécessaires. Pour vous en assurer, ouvrez `templates/base.html.twig`. Vous devriez y voir des balises `<link>` pour le CSS et `<script>` pour le Javascript, souvent via des fonctions Twig. [cite\_start]C'est grâce à cette intégration dans le template de base que toutes nos pages "enfants" pourront utiliser les classes CSS de Bootstrap (comme `container`, `card`, `btn`, etc.)[cite: 109, 110].
+
+-----
+
+## **Partie 2 : Dynamiser la Vue avec des Données et des Images**
+
+Nous allons maintenant simuler des données et les transmettre à notre vue Twig pour les afficher dynamiquement.
+
+#### **Tâches à réaliser :**
+
+1.  **Préparez les données dans le contrôleur** :
+    [cite\_start]Dans `ProductController`, modifiez la méthode `index()` pour créer un tableau de produits (incluant une clé `image`) et le passer à la vue[cite: 525].
+
+    ```php
+    // src/Controller/ProductController.php
+
+    public function index(): Response
+    {
+        $products = [
+            ['id' => 0, 'name' => 'Ordinateur Portable', 'price' => 1200, 'description' => 'Un PC puissant.', 'image' => 'images/laptop.jpg'],
+            ['id' => 1, 'name' => 'Clavier Mécanique', 'price' => 150, 'description' => 'Frappe précise.', 'image' => 'images/keyboard.jpg'],
+            ['id' => 2, 'name' => 'Souris Gamer', 'price' => 80, 'description' => 'Haute précision.', 'image' => 'images/mouse.jpg'],
+            ['id' => 3, 'name' => 'Écran 4K', 'price' => 750, 'description' => 'Image nette.', 'image' => 'images/monitor.jpg']
+        ];
+
+        return $this->render('product/index.html.twig', [
+            'products_list' => $products,
+        ]);
+    }
+    ```
+
+2.  **Ajoutez les images au projet** :
+
+      * Dans le dossier **`public/`** de votre projet, créez un nouveau dossier nommé `images`.
+      * Trouvez des images correspondantes sur internet et enregistrez-les dans ce dossier.
+      * Le dossier `public` est la racine web de votre projet. [cite\_start]Tous les assets (CSS, JS, images) accessibles publiquement doivent s'y trouver[cite: 243].
+
+3.  **Affichez les produits et leurs images** :
+    Modifiez la vue `templates/product/index.html.twig`. [cite\_start]Utilisez une boucle `for` pour itérer sur les produits [cite: 207] [cite\_start]et la fonction **`asset()`** de Twig pour générer le chemin correct vers chaque image[cite: 242].
+
     ```twig
-    {# Ajoutez cette ligne sous le titre dans templates/home/greet.html.twig #}
-    <img src="{{ asset('images/logo.png') }}" alt="Logo Symfony" style="width: 100px;">
+    {# templates/product/index.html.twig #}
+
+    {% extends 'base.html.twig' %}
+    {% block title %}Liste des Produits{% endblock %}
+    {% block body %}
+    <div class="container">
+        <h1 class="my-4">Découvrez tous nos produits</h1>
+        <div class="row">
+        {% for product in products_list %}
+            <div class="col-md-4">
+                <div class="card my-2">
+                    {# La fonction asset() pointe vers le dossier 'public' #}
+                    <img src="{{ asset(product.image) }}" class="card-img-top" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">{{ product.description }}</p>
+                        <p class="font-weight-bold">Prix : {{ product.price|number_format(2, ',', ' ') }} €</p>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>Aucun produit n'est disponible pour le moment.</p>
+        {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
     ```
-4.  Actualisez la page. L'image est-elle affichée ? Si oui, pourquoi l'utilisation de `asset()` est-elle préférable à un simple chemin relatif comme `/images/logo.png` ?
 
 -----
 
-## Phase 4 : Conclusion
+## **Partie 3 : Pages de Détail et Routes avec Paramètres**
 
-### Q 4.0 : Bilan du Cycle de Vie
+Nous allons créer une nouvelle page pour afficher le détail d'un seul produit, accessible via une URL contenant un paramètre (son identifiant).
 
-**Tâche :** Décrivez le chemin parcouru par une requête dans Symfony, en mentionnant les quatre composants principaux : **Route**, **Controller**, **Template** et **Response**.
+#### **Tâches à réaliser :**
 
-### Q 4.1 : Prochaines Étapes
+1.  **Créez une nouvelle route avec des `requirements`** :
+    Dans `ProductController`, ajoutez une méthode `show()`. Sa route doit accepter un paramètre `{id}`. [cite\_start]Pour garantir que ce paramètre est bien un entier, ajoutez une contrainte (`requirement`)[cite: 421, 424].
 
-Notre application est statique. Quels sont les trois prochains grands sujets à maîtriser dans Symfony pour créer une application complète avec gestion d'utilisateurs et de données ?
+    ```php
+    // src/Controller/ProductController.php
 
-1.  **Doctrine ORM :** Pour la gestion de la base de données.
-2.  **Formulaires :** Pour la collecte et la validation des données utilisateur.
-3.  **Sécurité :** Pour l'authentification et les autorisations.
+    #[Route('/product/{id<\d+>}', name: 'app_product_show')]
+    public function show(int $id): Response
+    {
+        // On simule la récupération de la base de données
+        $products = [
+            ['id' => 0, 'name' => 'Ordinateur Portable', 'price' => 1200, 'description' => 'Un PC puissant.', 'image' => 'images/laptop.jpg'],
+            ['id' => 1, 'name' => 'Clavier Mécanique', 'price' => 150, 'description' => 'Frappe précise.', 'image' => 'images/keyboard.jpg'],
+            // ... etc
+        ];
+        
+        // On recherche le produit correspondant à l'id.
+        $foundProduct = null;
+        foreach ($products as $product) {
+            if ($product['id'] === $id) {
+                $foundProduct = $product;
+                break;
+            }
+        }
+
+        if (!$foundProduct) {
+            throw $this->createNotFoundException('Le produit demandé n\'existe pas !');
+        }
+
+        return $this->render('product/show.html.twig', [
+            'product_item' => $foundProduct,
+        ]);
+    }
+    ```
+
+      * **Question** : Que se passe-t-il si vous essayez d'accéder à l'URL `/product/test` ? [cite\_start]Pourquoi Symfony renvoie-t-il une erreur 404 (Not Found) ? [cite: 427]
+
+2.  **Créez la vue de détail** :
+    Créez un nouveau fichier `templates/product/show.html.twig`.
+
+    ```twig
+    {# templates/product/show.html.twig #}
+
+    {% extends 'base.html.twig' %}
+    {% block title %}{{ product_item.name }}{% endblock %}
+    {% block body %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{ asset(product_item.image) }}" class="img-fluid" alt="{{ product_item.name }}">
+            </div>
+            <div class="col-md-6">
+                <h1>{{ product_item.name }}</h1>
+                <p>{{ product_item.description }}</p>
+                <h3>{{ product_item.price|number_format(2, ',', ' ') }} €</h3>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    ```
 
 -----
 
-**FIN DE L'ATELIER**
+## **Partie 4 : Génération d'URLs et Navigation**
+
+Pour naviguer entre nos pages, nous allons utiliser la fonction `path()` de Twig, qui génère des URLs à partir du nom des routes. [cite\_start]C'est une pratique robuste qui évite de casser les liens si on modifie le chemin d'une URL[cite: 223, 225].
+
+#### **Tâches à réaliser :**
+
+1.  **Liez la liste aux pages de détail** :
+    [cite\_start]Modifiez `templates/product/index.html.twig` pour ajouter un lien sur chaque produit vers la page de détail, en passant l'ID du produit en paramètre[cite: 237].
+
+    ```twig
+    {# ... dans la card-body de templates/product/index.html.twig ... #}
+    <a href="{{ path('app_product_show', {id: product.id}) }}" class="btn btn-primary">Voir le détail</a>
+    ```
+
+2.  **Ajoutez un lien de retour** :
+    Dans `templates/product/show.html.twig`, ajoutez un lien pour revenir à la liste.
+
+    ```twig
+    {# ... à la fin du block body de templates/product/show.html.twig ... #}
+    <div class="container">
+        <hr>
+        <a href="{{ path('app_products_index') }}">Retour à la liste des produits</a>
+    </div>
+    ```
+
+-----
+
+## **Partie 5 : Gestion des Conflits de Routes**
+
+Un conflit peut survenir lorsqu'une URL correspond à plusieurs routes. Les routes les plus **spécifiques** doivent toujours être déclarées **avant** les routes plus **génériques**.
+
+#### **Tâches à réaliser :**
+
+1.  **Créez une route conflictuelle** :
+    Dans `ProductController`, ajoutez la méthode suivante **AVANT** la méthode `show(int $id)`.
+
+    ```php
+    // src/Controller/ProductController.php
+
+    #[Route('/product/new', name: 'app_product_new')]
+    public function newProducts(): Response
+    {
+        return new Response('<h1>Voici nos derniers produits !</h1>');
+    }
+
+    // La méthode show() vient APRES
+    #[Route('/product/{id<\d+>}', name: 'app_product_show')]
+    public function show(int $id): Response
+    {
+        // ...
+    }
+    ```
+
+      * Testez l'URL `/product/new`. Elle devrait fonctionner.
+
+2.  **Observez le problème** :
+    Maintenant, déplacez la méthode `newProducts()` pour qu'elle soit déclarée **APRÈS** la méthode `show()`.
+
+      * **Question** : Rafraîchissez la page `/product/new`. Que se passe-t-il et pourquoi ?
+      * **Explication** : Le routeur lit les routes dans l'ordre. Quand `show()` est déclarée en premier, son pattern `/product/{id}` intercepte `/product/new` et considère "new" comme une valeur pour `{id}`. La contrainte `\d+` échoue, provoquant une erreur 404.
+
+3.  **Corrigez le problème** en remettant la méthode `newProducts()` à sa place initiale.
+
+-----
+
+## **Partie 6 : Optimisation avec les Préfixes de Route**
+
+[cite\_start]Pour éviter de se répéter, on peut préfixer toutes les routes d'un contrôleur au niveau de la classe[cite: 449, 452].
+
+#### **Tâches à réaliser :**
+
+1.  **Refactorisez votre `ProductController`** :
+    [cite\_start]Ajoutez un attribut `#[Route]` au-dessus de la classe et simplifiez les routes des méthodes[cite: 491].
+    ```php
+    // src/Controller/ProductController.php
+
+    #[Route('/product', name: 'app_product_')]
+    class ProductController extends AbstractController
+    {
+        #[Route('s', name: 'index')] // URL: /products, Nom: app_product_index
+        public function index(): Response
+        { /* ... */ }
+
+        #[Route('/new', name: 'new')] // URL: /product/new, Nom: app_product_new
+        public function newProducts(): Response
+        { /* ... */ }
+
+        #[Route('/{id<\d+>}', name: 'show')] // URL: /product/{id}, Nom: app_product_show
+        public function show(int $id): Response
+        { /* ... */ }
+    }
+    ```
+2.  **Vérifiez que tout fonctionne** :
+      * **Question** : Après cette modification, les liens générés avec `path()` dans Twig fonctionnent-ils toujours sans modification ? [cite\_start]Pourquoi ? [cite: 232]
+
+-----
+
+### **Pour générer le PDF**
+
+1.  Copiez l'intégralité de ce texte.
+2.  Collez-le dans un éditeur de texte compatible Markdown (comme VS Code avec une extension, Typora, ou un outil en ligne comme "StackEdit" ou "Dillinger").
+3.  Utilisez la fonction "Exporter en PDF" ou "Imprimer en PDF" de l'éditeur.
