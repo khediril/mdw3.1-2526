@@ -312,10 +312,5 @@ Un conflit peut survenir lorsqu'une URL correspond à plusieurs routes. Les rout
 2.  **Vérifiez que tout fonctionne** :
       * **Question** : Après cette modification, les liens générés avec `path()` dans Twig fonctionnent-ils toujours sans modification ? [cite\_start]Pourquoi ? [cite: 232]
 
------
 
-### **Pour générer le PDF**
 
-1.  Copiez l'intégralité de ce texte.
-2.  Collez-le dans un éditeur de texte compatible Markdown (comme VS Code avec une extension, Typora, ou un outil en ligne comme "StackEdit" ou "Dillinger").
-3.  Utilisez la fonction "Exporter en PDF" ou "Imprimer en PDF" de l'éditeur.
