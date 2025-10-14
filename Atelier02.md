@@ -50,7 +50,7 @@ Dans cette première étape, nous allons créer un nouveau projet Symfony, mettr
     ```
 
 4.  **Modifiez la vue initiale** :
-    Ouvrez `templates/product/index.html.twig`. Modifiez le contenu pour qu'il soit plus approprié. [cite\_start]N'oubliez pas que cette vue hérite de `base.html.twig`[cite: 15].
+    Ouvrez `templates/product/index.html.twig`. Modifiez le contenu pour qu'il soit plus approprié. N'oubliez pas que cette vue hérite de `base.html.twig`.
 
     ```twig
     {# templates/product/index.html.twig #}
@@ -77,7 +77,7 @@ Dans cette première étape, nous allons créer un nouveau projet Symfony, mettr
     Ouvrez votre navigateur et allez sur `http://1227.0.0.1:8000/products`.
 
 6.  **Intégration simple de Bootstrap** :
-    Le projet créé avec `--webapp` intègre normalement les assets nécessaires. Pour vous en assurer, ouvrez `templates/base.html.twig`. Vous devriez y voir des balises `<link>` pour le CSS et `<script>` pour le Javascript, souvent via des fonctions Twig. [cite\_start]C'est grâce à cette intégration dans le template de base que toutes nos pages "enfants" pourront utiliser les classes CSS de Bootstrap (comme `container`, `card`, `btn`, etc.)[cite: 109, 110].
+    Le projet créé avec `--webapp` intègre normalement les assets nécessaires. Pour vous en assurer, ouvrez `templates/base.html.twig`. Vous devriez y voir des balises `<link>` pour le CSS et `<script>` pour le Javascript, souvent via des fonctions Twig. C'est grâce à cette intégration dans le template de base que toutes nos pages "enfants" pourront utiliser les classes CSS de Bootstrap (comme `container`, `card`, `btn`, etc.).
 
 -----
 
@@ -88,7 +88,7 @@ Nous allons maintenant simuler des données et les transmettre à notre vue Twig
 #### **Tâches à réaliser :**
 
 1.  **Préparez les données dans le contrôleur** :
-    [cite\_start]Dans `ProductController`, modifiez la méthode `index()` pour créer un tableau de produits (incluant une clé `image`) et le passer à la vue[cite: 525].
+    Dans `ProductController`, modifiez la méthode `index()` pour créer un tableau de produits (incluant une clé `image`) et le passer à la vue.
 
     ```php
     // src/Controller/ProductController.php
@@ -112,10 +112,10 @@ Nous allons maintenant simuler des données et les transmettre à notre vue Twig
 
       * Dans le dossier **`public/`** de votre projet, créez un nouveau dossier nommé `images`.
       * Trouvez des images correspondantes sur internet et enregistrez-les dans ce dossier.
-      * Le dossier `public` est la racine web de votre projet. [cite\_start]Tous les assets (CSS, JS, images) accessibles publiquement doivent s'y trouver[cite: 243].
+      * Le dossier `public` est la racine web de votre projet. Tous les assets (CSS, JS, images) accessibles publiquement doivent s'y trouver.
 
 3.  **Affichez les produits et leurs images** :
-    Modifiez la vue `templates/product/index.html.twig`. [cite\_start]Utilisez une boucle `for` pour itérer sur les produits [cite: 207] [cite\_start]et la fonction **`asset()`** de Twig pour générer le chemin correct vers chaque image[cite: 242].
+    Modifiez la vue `templates/product/index.html.twig`. Utilisez une boucle `for` pour itérer sur les produits et la fonction **`asset()`** de Twig pour générer le chemin correct vers chaque image.
 
     ```twig
     {# templates/product/index.html.twig #}
@@ -155,7 +155,7 @@ Nous allons créer une nouvelle page pour afficher le détail d'un seul produit,
 #### **Tâches à réaliser :**
 
 1.  **Créez une nouvelle route avec des `requirements`** :
-    Dans `ProductController`, ajoutez une méthode `show()`. Sa route doit accepter un paramètre `{id}`. [cite\_start]Pour garantir que ce paramètre est bien un entier, ajoutez une contrainte (`requirement`)[cite: 421, 424].
+    Dans `ProductController`, ajoutez une méthode `show()`. Sa route doit accepter un paramètre `{id}`. Pour garantir que ce paramètre est bien un entier, ajoutez une contrainte (`requirement`).
 
     ```php
     // src/Controller/ProductController.php
@@ -189,7 +189,7 @@ Nous allons créer une nouvelle page pour afficher le détail d'un seul produit,
     }
     ```
 
-      * **Question** : Que se passe-t-il si vous essayez d'accéder à l'URL `/product/test` ? [cite\_start]Pourquoi Symfony renvoie-t-il une erreur 404 (Not Found) ? [cite: 427]
+      * **Question** : Que se passe-t-il si vous essayez d'accéder à l'URL `/product/test` ? Pourquoi Symfony renvoie-t-il une erreur 404 (Not Found) ?
 
 2.  **Créez la vue de détail** :
     Créez un nouveau fichier `templates/product/show.html.twig`.
@@ -219,12 +219,12 @@ Nous allons créer une nouvelle page pour afficher le détail d'un seul produit,
 
 ## **Partie 4 : Génération d'URLs et Navigation**
 
-Pour naviguer entre nos pages, nous allons utiliser la fonction `path()` de Twig, qui génère des URLs à partir du nom des routes. [cite\_start]C'est une pratique robuste qui évite de casser les liens si on modifie le chemin d'une URL[cite: 223, 225].
+Pour naviguer entre nos pages, nous allons utiliser la fonction `path()` de Twig, qui génère des URLs à partir du nom des routes. C'est une pratique robuste qui évite de casser les liens si on modifie le chemin d'une URL.
 
 #### **Tâches à réaliser :**
 
 1.  **Liez la liste aux pages de détail** :
-    [cite\_start]Modifiez `templates/product/index.html.twig` pour ajouter un lien sur chaque produit vers la page de détail, en passant l'ID du produit en paramètre[cite: 237].
+    Modifiez `templates/product/index.html.twig` pour ajouter un lien sur chaque produit vers la page de détail, en passant l'ID du produit en paramètre.
 
     ```twig
     {# ... dans la card-body de templates/product/index.html.twig ... #}
@@ -284,12 +284,12 @@ Un conflit peut survenir lorsqu'une URL correspond à plusieurs routes. Les rout
 
 ## **Partie 6 : Optimisation avec les Préfixes de Route**
 
-[cite\_start]Pour éviter de se répéter, on peut préfixer toutes les routes d'un contrôleur au niveau de la classe[cite: 449, 452].
+Pour éviter de se répéter, on peut préfixer toutes les routes d'un contrôleur au niveau de la classe.
 
 #### **Tâches à réaliser :**
 
 1.  **Refactorisez votre `ProductController`** :
-    [cite\_start]Ajoutez un attribut `#[Route]` au-dessus de la classe et simplifiez les routes des méthodes[cite: 491].
+    Ajoutez un attribut `#[Route]` au-dessus de la classe et simplifiez les routes des méthodes.
     ```php
     // src/Controller/ProductController.php
 
@@ -310,7 +310,7 @@ Un conflit peut survenir lorsqu'une URL correspond à plusieurs routes. Les rout
     }
     ```
 2.  **Vérifiez que tout fonctionne** :
-      * **Question** : Après cette modification, les liens générés avec `path()` dans Twig fonctionnent-ils toujours sans modification ? [cite\_start]Pourquoi ? [cite: 232]
+      * **Question** : Après cette modification, les liens générés avec `path()` dans Twig fonctionnent-ils toujours sans modification ? Pourquoi ?
 
 
 
