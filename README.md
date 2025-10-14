@@ -15,3 +15,5 @@
 [Atelier 7](Atelier07.md)
 ## Atelier 8 : Les API Rest
 [Atelier 8](Atelier08.md)
+## Atelier 9 : Les Asset Mapper et Symfony UX
+[Atelier 9](Atelier09.md)
