@@ -9,3 +9,7 @@
 [Atelier 4](Atelier04.md)
 ## Atelier 5
 [Atelier 5](Atelier05.md)
+## Atelier 6
+[Atelier 6](Atelier06.md)
+## Atelier 7
+[Atelier 7](Atelier07.md)
