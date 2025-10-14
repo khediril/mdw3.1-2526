@@ -1,4 +1,4 @@
-# **Atelier 0 : Préparation de l'Environnement de Développement Symfony**
+# **Atelier 01 : Préparation de l'Environnement de Développement Symfony**
 
 Bienvenue dans cet atelier initial \! 🚀 Avant de plonger dans le code et de construire notre première application, il est essentiel de préparer notre machine. Cet atelier vous guidera pas à pas pour installer et configurer tous les outils nécessaires au développement avec le framework **Symfony**.
 
