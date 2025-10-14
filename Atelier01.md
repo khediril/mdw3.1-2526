@@ -1,74 +1,55 @@
-# **Atelier 01 Préparatoire : Mise en Place de l'Environnement Symfony**
+# **Atelier 0 : Préparation de l'Environnement de Développement Symfony**
 
-Bienvenue dans cet atelier initial \! 🚀 Avant de plonger dans le code et de construire notre première application, il est essentiel de préparer notre machine. Cet atelier vous guidera pas à pas pour installer et configurer tous les outils nécessaires au développement avec le framework Symfony.
+Bienvenue dans cet atelier initial \! 🚀 Avant de plonger dans le code et de construire notre première application, il est essentiel de préparer notre machine. Cet atelier vous guidera pas à pas pour installer et configurer tous les outils nécessaires au développement avec le framework **Symfony**.
 
-## **Qu'est-ce qu'un Framework et pourquoi en utiliser un ?**
+## **Introduction : Le Concept de Framework**
 
-Imaginez que vous construisiez une maison. Au lieu de fabriquer chaque brique, chaque clou et chaque outil à partir de zéro, vous utilisez un ensemble d'outils préfabriqués et un plan de construction. [cite\_start]Un **framework** est exactement cela pour le développement web : une "boîte à outils" et une structure de base créées par des développeurs pour d'autres développeurs[cite: 542, 543].
+**C'est quoi ?** Un **framework** (ou "cadre de travail") est une structure logicielle complète qui fournit un ensemble de composants, de bibliothèques et de conventions pour développer des applications. Il agit comme une "boîte à outils"  qui standardise le processus de développement.
 
-Utiliser un framework comme Symfony nous permet de :
+**Pourquoi l'utiliser ?**
 
-  * [cite\_start]**Gagner du temps** : On se concentre sur les fonctionnalités uniques de notre application plutôt que sur des tâches techniques répétitives[cite: 547].
-  * [cite\_start]**Réutiliser du code** : Il fournit des bibliothèques de code prêtes à l'emploi[cite: 548].
-  * [cite\_start]**Coder proprement** : Il impose des normes et une organisation, ce qui rend le code plus facile à maintenir[cite: 549].
+  * **Rapidité** : On se concentre sur la logique métier spécifique de l'application, pas sur les tâches techniques récurrentes (comme la gestion des requêtes HTTP ou l'accès aux données).
+  * **Qualité et Maintenabilité** : Il impose des normes de développement et une architecture claire (comme le **MVC**), ce qui rend le code plus propre et plus facile à maintenir, même en équipe.
 
 -----
 
-## **Étape 1 : Préparation du Système (Ubuntu)**
+## **Étape 1 : Le Moteur et son Gestionnaire**
 
-[cite\_start]Pour cet atelier, nous supposerons que vous travaillez sur un système **Ubuntu 22.04** (ou une version similaire)[cite: 555]. La première étape est de s'assurer que votre système est à jour.
+### **1. PHP : Le Moteur du Framework** ⚙️
 
-1.  **Ouvrez le terminal** :
-    [cite\_start]C'est l'outil qui nous permet de communiquer avec le système via des commandes textuelles[cite: 557]. [cite\_start]Vous pouvez l'ouvrir en cherchant "terminal" dans vos applications ou avec le raccourci `Ctrl+Alt+T`[cite: 557, 558].
+PHP est le langage de programmation côté serveur sur lequel Symfony est construit. C'est lui qui exécute le code de votre application.
 
-2.  **Mettez à jour votre système** :
-    Exécutez les deux commandes suivantes. La première télécharge la liste des paquets disponibles, la seconde installe les mises à jour.
+**Tâches à réaliser :**
+
+1.  **Mise à jour du système (pour Ubuntu)** :
 
     ```bash
     sudo apt update
-    ```
-
-    ```bash
     sudo apt upgrade
     ```
 
------
-
-## **Étape 2 : Installation des Outils Essentiels**
-
-Nous allons maintenant installer les briques logicielles de notre environnement.
-
-### **PHP : Le Moteur de l'Application** ⚙️
-
-**C'est quoi ?** PHP est le langage de programmation sur lequel Symfony est construit. C'est le "moteur" qui va exécuter tout notre code côté serveur pour générer les pages web.
-
-1.  **Installez PHP** :
-    [cite\_start]Symfony requiert PHP 8.1 ou une version supérieure[cite: 571]. La commande suivante installe la version disponible dans les dépôts d'Ubuntu.
+2.  **Installation de PHP et ses extensions** :
+    Symfony 7 requiert PHP 8.1 ou supérieur. Nous installons les extensions courantes (`xml`, `pdo-mysql`) nécessaires au bon fonctionnement des composants de base.
 
     ```bash
-    sudo apt install php
+    sudo apt install php php-xml php-pdo php-mysql
     ```
 
-2.  **Installez les extensions nécessaires** :
-    [cite\_start]Symfony a besoin de quelques modules PHP supplémentaires pour fonctionner correctement, notamment pour communiquer avec la base de données (`php-mysql`) et pour gérer les fichiers XML (`php-xml`)[cite: 575].
-
-    ```bash
-    sudo apt install php-xml php-mysql
-    ```
-
-3.  **Vérifiez l'installation** :
-    Assurez-vous que PHP est bien installé en vérifiant sa version.
+3.  **Vérification** :
 
     ```bash
     php --version
     ```
 
-### **Composer : Le Gestionnaire de Dépendances** 📦
+      * **Documentation Officielle PHP** : [https://www.php.net/](https://www.php.net/)
 
-**C'est quoi ?** Une application moderne ne réinvente pas la roue ; elle utilise des bibliothèques (ou "packages") externes. [cite\_start]**Composer** est l'outil indispensable en PHP qui gère ces dépendances pour nous : il les télécharge, les installe et les met à jour[cite: 587, 588].
+### **2. Composer : Le Gestionnaire de Dépendances** 📦
 
-1.  **Installez Composer** :
-    Exécutez les commandes suivantes l'une après l'autre. [cite\_start]Elles vont télécharger l'installateur, l'exécuter, puis le nettoyer, et enfin rendre la commande `composer` accessible globalement[cite: 579, 580, 581, 582].
+**C'est quoi ?** Composer est l'outil indispensable pour **télécharger, installer et gérer** toutes les bibliothèques et les paquets externes dont Symfony a besoin pour fonctionner. Il évite de télécharger manuellement chaque composant.
+
+**Tâches à réaliser :**
+
+1.  **Installation de Composer (globale)** :
 
     ```bash
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -77,82 +58,125 @@ Nous allons maintenant installer les briques logicielles de notre environnement.
     sudo mv composer.phar /usr/local/bin/composer
     ```
 
-2.  **Vérifiez l'installation** :
+2.  **Vérification** :
 
     ```bash
     composer --version
     ```
 
-### **Git : Le Gardien de votre Code** Git
+      * **Documentation Officielle Composer** : [https://getcomposer.org/](https://getcomposer.org/)
 
-**C'est quoi ?** Git est un système de contrôle de version. Il enregistre l'historique de toutes les modifications apportées à votre code. C'est un outil fondamental pour suivre vos changements, revenir en arrière si nécessaire et collaborer à plusieurs sur un même projet.
+-----
 
-1.  **Installez Git** :
+## **Étape 2 : Les Outils de Projet et de Base de Données**
 
-    ```bash
-    sudo apt install git
-    ```
+### **3. Symfony CLI : L'Assistant en Ligne de Commande** ✨
 
-2.  **Configurez Git** :
-    Vous devez dire à Git qui vous êtes. [cite\_start]Ces informations seront associées à chaque modification que vous enregistrerez[cite: 598].
+**C'est quoi ?** C'est un outil développé par l'équipe Symfony. Il est essentiel pour simplifier les tâches comme la **création de projets**, la **gestion des certificats SSL** et, surtout, le lancement d'un **serveur web local** optimisé pour le développement.
 
-    ```bash
-    git config --global user.name "Votre Nom"
-    git config --global user.email "votre.email@example.com"
-    ```
+**Tâches à réaliser :**
 
-3.  **Vérifiez l'installation** :
-
-    ```bash
-    git --version
-    ```
-
-### **Visual Studio Code : Votre Espace de Travail** 📝
-
-[cite\_start]**C'est quoi ?** C'est un éditeur de code, ou plus précisément un Environnement de Développement Intégré (IDE)[cite: 602]. [cite\_start]Il offre des fonctionnalités avancées (coloration syntaxique, auto-complétion, débogage) qui rendent le codage beaucoup plus facile et efficace[cite: 602].
-
-1.  **Installez VS Code** :
-    [cite\_start]Téléchargez et installez le paquet `.deb` pour Ubuntu depuis le site officiel : **[https://code.visualstudio.com/](https://code.visualstudio.com/)**[cite: 611].
-
-2.  **Ajoutez des extensions utiles** :
-    Les extensions ajoutent des fonctionnalités à VS Code. [cite\_start]Ouvrez l'onglet "Extensions" (l'icône des 4 carrés) [cite: 619] et installez les extensions suivantes pour une meilleure expérience avec Symfony :
-
-      * [cite\_start]**PHP Intelephense** [cite: 620]
-      * [cite\_start]**Symfony for VSCode** [cite: 623]
-      * [cite\_start]**Twig** [cite: 625]
-      * [cite\_start]**Twig Language 2** [cite: 626]
-
-### **MySQL : La Base de Données** 🗃️
-
-[cite\_start]**C'est quoi ?** C'est le Système de Gestion de Base de Données (SGBD) que nous utiliserons[cite: 629]. C'est là que notre application stockera toutes ses données persistantes, comme les utilisateurs, les produits, les articles, etc.
-
-1.  **Installez le serveur MySQL** :
-    ```bash
-    sudo apt install mysql-server
-    ```
-
-### **Symfony CLI : L'Assistant Symfony** ✨
-
-[cite\_start]**C'est quoi ?** C'est un outil en ligne de commande créé spécialement pour Symfony[cite: 633]. [cite\_start]Il simplifie de nombreuses tâches comme la création d'un nouveau projet, le lancement d'un serveur web local optimisé pour le développement, et la vérification de la configuration de votre machine[cite: 633, 635, 637].
-
-1.  **Installez la Symfony CLI** :
-    [cite\_start]Exécutez les commandes suivantes pour ajouter le dépôt de Symfony et installer l'outil[cite: 641, 642].
+1.  **Installation de la CLI (pour Ubuntu)** :
 
     ```bash
     curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
-    ```
-
-    ```bash
     sudo apt install symfony-cli
     ```
 
-2.  **Vérifiez votre configuration** :
-    [cite\_start]La CLI inclut un outil très pratique pour vérifier que votre machine répond à toutes les exigences de Symfony[cite: 643]. Exécutez-le :
+2.  **Vérification de l'environnement** :
+    Cet outil permet de vérifier que votre machine respecte toutes les exigences logicielles de Symfony.
 
     ```bash
     symfony check:requirements
     ```
 
+      * **Documentation Officielle Symfony CLI** : [https://symfony.com/download](https://symfony.com/download)
+
+### **4. Git : Le Contrôle de Version** Git
+
+**C'est quoi ?** Git est le système de contrôle de version le plus populaire. Il vous permet d'enregistrer l'historique de toutes les modifications de votre code, de revenir à des versions antérieures et de collaborer efficacement sur des projets.
+
+**Tâches à réaliser :**
+
+1.  **Installation et configuration** :
+    ```bash
+    sudo apt install git
+    git config --global user.name "Votre Prénom Nom"
+    git config --global user.email "votre.email@etu.univ.tn"
+    ```
+      * **Documentation Officielle Git** : [https://git-scm.com/doc](https://git-scm.com/doc)
+
+### **5. MySQL : Le SGBD** 🗃️
+
+**C'est quoi ?** C'est le système de gestion de base de données que nous utiliserons pour stocker les informations de notre application (produits, utilisateurs, etc.).
+
+**Tâches à réaliser :**
+
+1.  **Installation du serveur MySQL** :
+    ```bash
+    sudo apt install mysql-server
+    ```
+      * **Documentation Officielle MySQL** : [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/)
+
 -----
 
-Félicitations \! 🎉 Votre environnement de développement est maintenant entièrement configuré et prêt pour commencer à créer des applications avec Symfony. Dans le prochain atelier, nous utiliserons ces outils pour créer notre premier projet.
+## **Étape 3 : Création du Projet et Démarrage**
+
+1.  **Créez votre premier projet Symfony** :
+    Nous utilisons la CLI de Symfony et le modèle `webapp` qui inclut les paquets nécessaires pour une application web classique (routes, Twig, etc.).
+
+    ```bash
+    symfony new MaBoutique --webapp
+    ```
+
+2.  **Accédez au dossier du projet** :
+
+    ```bash
+    cd MaBoutique
+    ```
+
+3.  **Démarrez le serveur de développement** :
+    C'est la commande la plus importante pour le développement. Elle lance un serveur web sur votre machine.
+
+    ```bash
+    symfony serve
+    ```
+
+      * **Testez** : Ouvrez votre navigateur et accédez à **`http://127.0.0.1:8000`**. Vous devriez voir la page de bienvenue de Symfony.
+
+4.  **Arrêtez le serveur** :
+    Quand vous avez fini de travailler, arrêtez le serveur avec :
+
+    ```bash
+    symfony server:stop
+    ```
+
+-----
+
+## **Outil de travail : VS Code** 📝
+
+Bien qu'il ne soit pas strictement nécessaire pour Symfony, l'utilisation d'un éditeur de code moderne comme **Visual Studio Code** (VS Code) est fortement recommandée.
+
+**Pourquoi ?**
+
+  * **Coloration Syntaxique** : Rend le code plus lisible.
+  * **IntelliSense/Auto-complétion** : Propose des suggestions de code basées sur le framework.
+
+**Recommandation d'extensions :**
+
+  * **PHP Intelephense** : Support avancé pour PHP.
+  * **Symfony for VSCode** : Aide à la complétion des routes, services et templates Twig.
+  * **Twig Language 2** : Meilleur support pour le langage de template Twig.
+      * **Téléchargement VS Code** : [https://code.visualstudio.com/](https://code.visualstudio.com/)
+
+-----
+
+### **Synthèse des Outils et de leurs Rôles**
+
+| Outil | Rôle Principal | Lien de Documentation |
+| :--- | :--- | :--- |
+| **PHP** | Moteur qui exécute le code côté serveur. | [https://www.php.net/](https://www.php.net/) |
+| **Composer** | Gestionnaire des dépendances et des librairies. | [https://getcomposer.org/](https://getcomposer.org/) |
+| **Symfony CLI** | Assistant pour créer des projets et lancer le serveur web local. | [https://symfony.com/download](https://symfony.com/download) |
+| **Git** | Système de contrôle de version. | [https://git-scm.com/doc](https://git-scm.com/doc) |
+| **MySQL** | Stockage des données de l'application. | [https://dev.mysql.com/doc/](https://dev.mysql.com/doc/) |
