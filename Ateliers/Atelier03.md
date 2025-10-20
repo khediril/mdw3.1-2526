@@ -18,14 +18,7 @@ La première étape est d'établir la communication entre Symfony et votre serve
 
 #### **Tâches à réaliser :**
 
-1.  **Création de la base de données** :
-    Si ce n'est pas déjà fait, créez une base de données vide nommée `ma_boutique_db` sur votre serveur MySQL.
-
-    ```sql
-    CREATE DATABASE ma_boutique_db;
-    ```
-
-2.  **Configuration du fichier `.env`** :
+1.  **Configuration du fichier `.env`** :
     Ouvrez le fichier **`.env`** à la racine de votre projet. Ce fichier contient les variables d'environnement.
 
       * **Localisez** et **modifiez** la ligne `DATABASE_URL` avec vos identifiants MySQL locaux (utilisateur et mot de passe).
@@ -39,11 +32,11 @@ La première étape est d'établir la communication entre Symfony et votre serve
 
     *(**Note** : Remplacez `mot_de_passe_mysql` par le mot de passe de votre utilisateur `root` ou d'un utilisateur dédié.)*
 
-3.  **Vérification de la connexion** :
+2.  **Vérification de la connexion** :
     Nous utilisons l'outil Doctrine pour vérifier que la configuration fonctionne.
 
     ```bash
-    php bin/console doctrine:database:create
+    symfony console doctrine:database:create
     # Si la base de données est déjà là, l'outil vous le confirmera.
     ```
 
@@ -59,7 +52,7 @@ La première étape est d'établir la communication entre Symfony et votre serve
     Utilisez la commande `make:entity` pour créer la classe et le *Repository* associés à notre table de produits.
 
     ```bash
-    php bin/console make:entity Product
+    symfony console make:entity Product
     ```
 
 2.  **Définissez les champs (Propriétés)** :
@@ -93,7 +86,7 @@ Les **Migrations** sont des fichiers de code qui permettent à Doctrine de gén�
     Cette commande compare l'état des Entités (PHP) avec l'état de la base de données (SQL) et génère le script de modification.
 
     ```bash
-    php bin/console make:migration
+    symfony console make:migration
     ```
 
       * **Observation** : Un fichier est créé dans le dossier `migrations/`. Vous pouvez l'ouvrir pour voir le SQL qui sera exécuté (`CREATE TABLE product...`).
@@ -102,7 +95,7 @@ Les **Migrations** sont des fichiers de code qui permettent à Doctrine de gén�
     Cette commande applique le script SQL généré à votre base de données.
 
     ```bash
-    php bin/console doctrine:migrations:migrate
+    symfony console doctrine:migrations:migrate
     ```
 
       * **Vérifiez** : Confirmez la création de la table `product` en vous connectant à votre outil de base de données (PhpMyAdmin, etc.).
