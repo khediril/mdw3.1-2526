@@ -19,8 +19,9 @@ Avant de commencer l'intégration, nous devons disposer d'un template et compren
 
 1.  **Choisissez un Template** :
     Rendez-vous sur un site comme [**ThemeWagon**](https://themewagon.com/theme-tag/ecommerce-template/) ou **Start Bootstrap** et téléchargez un template *gratuit* (souvent avec un fichier `index.html`).
+    Télécharger le template suivant :[**Electro**] (https://themewagon.com/themes/electro-bootstrap/)
 
-2.  **Analysez la Structure du Template** :
+3.  **Analysez la Structure du Template** :
     Ouvrez les fichiers téléchargés. Un template typique contient :
 
       * Un ou plusieurs fichiers **HTML** (ex: `index.html`, `about.html`).
@@ -28,7 +29,7 @@ Avant de commencer l'intégration, nous devons disposer d'un template et compren
       * Un dossier **JS** (contenant les scripts personnalisés ou les librairies).
       * Un dossier **IMG** ou **ASSETS** (contenant les images, le logo, les polices).
 
-3.  **Nettoyez le dossier `public`** :
+4.  **Nettoyez le dossier `public`** :
     Dans votre projet Symfony, le dossier **`public/`** est la racine web. Tout ce qui est accessible publiquement par le navigateur doit y être placé.
 
       * Dans `MaBoutique/public/`, créez un dossier **`theme/`** pour isoler les fichiers du template.
