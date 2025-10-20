@@ -1,5 +1,5 @@
 
-Absolument ! Voici quelques commandes MySQL (SQL) essentielles et courantes que vous utiliserez souvent pour gérer vos bases de données. Ces commandes sont à exécuter dans l'invite `mysql>` après vous être connecté au serveur.
+# Voici quelques commandes MySQL (SQL) essentielles et courantes que vous utiliserez souvent pour gérer vos bases de données. Ces commandes sont à exécuter dans l'invite `mysql>` après vous être connecté au serveur.
 
 ---
 
