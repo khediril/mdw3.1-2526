@@ -19,7 +19,7 @@ Avant de commencer l'intégration, nous devons disposer d'un template et compren
 
 1.  **Choisissez un Template** :
     Rendez-vous sur un site comme [**ThemeWagon**](https://themewagon.com/theme-tag/ecommerce-template/) ou **Start Bootstrap** et téléchargez un template *gratuit* (souvent avec un fichier `index.html`).
-    Télécharger le template suivant :[**Electro**] (https://themewagon.com/themes/electro-bootstrap/)
+    Télécharger le template suivant :[**Electro**](https://themewagon.com/themes/electro-bootstrap/)
 
 3.  **Analysez la Structure du Template** :
     Ouvrez les fichiers téléchargés. Un template typique contient :
