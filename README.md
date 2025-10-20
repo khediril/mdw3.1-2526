@@ -4,6 +4,7 @@
 ## Atelier 2 : De la Route à la Vue Dynamique
 [Atelier 2](Ateliers/Atelier02.md)
 ## Atelier 3 : Les Bases de Données avec Doctrine ORM
+[Installation de Mysql](Annexes/mysqlInstall.md)
 [Atelier 3](Ateliers/Atelier03.md)
 ## Atelier 4 : CRUD et Formulaires Avancés
 [Atelier 4](Ateliers/Atelier04.md)
