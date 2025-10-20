@@ -27,7 +27,7 @@ La première étape est d'établir la communication entre Symfony et votre serve
 
     ```dotenv
     # .env
-    DATABASE_URL="mysql://root:mot_de_passe_mysql@127.0.0.1:3306/ma_boutique_db?serverVersion=8.0&charset=utf8mb4"
+    DATABASE_URL="mysql://mdw312526:mdw312526@127.0.0.1:3306/ma_boutique_db?serverVersion=8.0&charset=utf8mb4"
     ```
 
     *(**Note** : Remplacez `mot_de_passe_mysql` par le mot de passe de votre utilisateur `root` ou d'un utilisateur dédié.)*
