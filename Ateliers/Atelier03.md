@@ -1,4 +1,4 @@
-# **Atelier Symfony : Les Bases de Données avec Doctrine ORM**
+# **Atelier 03 : Les Bases de Données avec Doctrine ORM**
 
 Bienvenue dans cet atelier crucial \! Jusqu'à présent, nous avons affiché des données statiques (des tableaux PHP). Maintenant, nous allons connecter notre application à une **base de données MySQL** et utiliser **Doctrine**, l'ORM par défaut de Symfony, pour gérer, stocker et récupérer nos produits de manière persistante.
 
