@@ -21,7 +21,7 @@ Au lieu de gérer le HTML et la validation des champs manuellement, Symfony four
     Utilisez la console Symfony pour créer le fichier `ProductType.php`. Cette classe définira la structure de notre formulaire.
 
     ```bash
-    php bin/console make:form ProductType
+    symfony console  make:form ProductType
     ```
 
       * Le fichier `src/Form/ProductType.php` est créé.
