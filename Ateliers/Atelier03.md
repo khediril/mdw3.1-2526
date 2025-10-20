@@ -61,7 +61,7 @@ La première étape est d'établir la communication entre Symfony et votre serve
     | Nom du Champ | Type (choix) | Longueur | Nullable ? |
     | :--- | :--- | :--- | :--- |
     | `name` | `string` | `255` | `no` |
-    | `price` | `float` | | `no` |
+    | `price` | `integer` | | `no` |
     | `description` | `text` | | `yes` |
     | `image` | `string` | `255` | `yes` |
 
