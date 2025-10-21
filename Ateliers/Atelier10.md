@@ -1,18 +1,9 @@
 ## **Atelier : Le Conteneur de Services et l'Injection de Dépendances avec Symfony**
 
-### **Public Cible**
-* Étudiants de 3$^{\text{e}}$ Licence Informatique (ayant des bases en PHP orienté objet et MVC).
-
 ### **Prérequis Techniques**
 * **Environnement Symfony** (version récente) fonctionnel.
 * Connaissances de base de la **ligne de commande**.
 * Éditeur de code (VS Code, PhpStorm, etc.).
-
-### **Durée et Structure**
-* **Durée Totale :** 3 heures.
-* **Structure :** Théorie (30 min) + Pratique Guidée (120 min) + Synthèse/Questions (30 min).
-
----
 
 ## **Phase 1 : Fondamentaux (30 minutes)** 💡
 
