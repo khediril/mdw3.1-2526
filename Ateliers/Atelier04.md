@@ -1,4 +1,4 @@
-# **Atelier Symfony : CRUD et Formulaires Avancés**
+# **Atelier 04 : CRUD et Formulaires Avancés**
 
 Cet atelier fait suite à la mise en place de l'environnement et à la création de votre Entité `Product`. L'objectif est de fournir une interface complète pour **Créer, Modifier et Supprimer (CRUD)** des produits de manière sécurisée et rapide grâce aux **formulaires Symfony**.
 
