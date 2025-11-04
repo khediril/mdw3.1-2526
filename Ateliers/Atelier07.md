@@ -1,4 +1,4 @@
-# **Atelier Symfony : Intégration d'un Template Bootstrap**
+# **Atelier 07 : Intégration d'un Template Bootstrap**
 
 Cet atelier se concentre sur l'amélioration de l'interface utilisateur de votre application en intégrant un thème HTML/CSS/JS externe (un template Bootstrap gratuit). Vous apprendrez à manipuler le moteur de template Twig pour gérer les *assets* (CSS, JS, images) de manière structurée et réutilisable.
 
