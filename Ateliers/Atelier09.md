@@ -1,4 +1,4 @@
-# **Atelier Symfony : Gestion des Assets avec AssetMapper et Symfony UX**
+# **Atelier 09 : Gestion des Assets avec AssetMapper et Symfony UX**
 
 Cet atelier vous introduit aux méthodes modernes de gestion des fichiers frontend (JavaScript, CSS, images) et à l'ajout de fonctionnalités frontend avancées (comme la réactivité) directement depuis le code PHP/Twig, sans la complexité de Webpack ou Node.js.
 

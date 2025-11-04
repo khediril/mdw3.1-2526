@@ -1,4 +1,4 @@
-# **Atelier Symfony : Sécurité, Utilisateurs et Rôles**
+# **Atelier 06 : Sécurité, Utilisateurs et Rôles**
 
 Cet atelier se concentre sur l'implémentation des mécanismes de sécurité fondamentaux de Symfony. L'objectif est de sécuriser l'accès à certaines parties de l'application (comme les pages CRUD) et d'apprendre à gérer les utilisateurs et leurs permissions via des **Rôles**.
 

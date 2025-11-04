@@ -1,4 +1,4 @@
-# **Atelier Symfony : Création d'une API RESTful**
+# **Atelier 08 : Création d'une API RESTful**
 
 Cet atelier vous apprend à déconnecter votre logique métier (Contrôleurs, Services, Doctrine) de l'interface utilisateur (Twig). L'objectif est de transformer votre application en une **Interface de Programmation Applicative (API)** qui communique en utilisant le format standard du web : **JSON**.
 

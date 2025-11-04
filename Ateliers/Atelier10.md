@@ -1,4 +1,4 @@
-## **Atelier : Le Conteneur de Services et l'Injection de Dépendances avec Symfony**
+# **Atelier 10 : Le Conteneur de Services et l'Injection de Dépendances avec Symfony**
 
 ### **Prérequis Techniques**
 * **Environnement Symfony** (version récente) fonctionnel.
