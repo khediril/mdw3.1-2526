@@ -56,7 +56,7 @@ L'authentification consiste à permettre à un utilisateur de prouver son identi
     L'assistant `make:authenticator` crée un contrôleur, un template et configure le firewall (le mécanisme de garde-barrière de Symfony).
 
     ```bash
-    php bin/console make:security
+    php bin/console make:security:form-login
     ```
 
       * **Voulez-vous créer une classe de *Login Form Authenticator* ?** : `yes`.
