@@ -13,7 +13,7 @@
 ## Atelier 6 : Intégration d'un Template Bootstrap
 [Atelier 6](Ateliers/Atelier06.md)
 ## Atelier 7 : Sécurité, Utilisateurs et Rôles
-[Atelier 7](Ateliers/Atelier07.md)
+[Atelier 7](Ateliers/Atelier07bis.md)
 ## Atelier 8 : Les API Rest
 [Atelier 8](Ateliers/Atelier08.md)
 ## Atelier 9 : Les Asset Mapper et Symfony UX
