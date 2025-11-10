@@ -1,6 +1,6 @@
 # mdw3.1-2526 Atelier Framework Coté serveur 
-## Atelier 1 : Préparation de l'Environnement de Développement Symfony
-[Atelier 1](Ateliers/Atelier01.md)
+## Atelier 1 : Préparation de l'Environnement de Développement Symfony [Atelier 1](Ateliers/Atelier01.md)
+
 ## Atelier 2 : De la Route à la Vue Dynamique
 [Atelier 2](Ateliers/Atelier02.md)
 ## Atelier 3 : Les Bases de Données avec Doctrine ORM
