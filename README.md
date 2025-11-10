@@ -10,9 +10,9 @@
 [Atelier 4](Ateliers/Atelier04.md)
 ## Atelier 5 : Relations, Requêtes Avancées (DQL) et Services
 [Atelier 5](Ateliers/Atelier05.md)
-## Atelier 6 : Sécurité, Utilisateurs et Rôles
+## Atelier 6 : Intégration d'un Template Bootstrap
 [Atelier 6](Ateliers/Atelier06.md)
-## Atelier 7 : Intégration d'un Template Bootstrap
+## Atelier 7 : Sécurité, Utilisateurs et Rôles
 [Atelier 7](Ateliers/Atelier07.md)
 ## Atelier 8 : Les API Rest
 [Atelier 8](Ateliers/Atelier08.md)
