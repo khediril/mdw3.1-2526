@@ -152,11 +152,7 @@ C'est le principe selon lequel un objet (par exemple, un Contrôleur) ne crée p
 1.  **Générez un Service de Calcul** :
     Créez un service simple pour calculer le prix avec TVA, une logique métier qui ne devrait pas être dans le contrôleur.
 
-    ```bash
-    php bin/console make:service PriceCalculator
-    ```
-
-      * Le fichier `src/Service/PriceCalculator.php` est créé.
+          * il suffit de créer le fichier `src/Service/PriceCalculator.php` dans symfony la classe PriceCalculator sera considérée automatiquement comme un service.
 
 2.  **Implémentez la logique dans le Service** :
     Dans `PriceCalculator.php`, définissez une constante pour la TVA et créez une méthode de calcul.
